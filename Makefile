@@ -5,6 +5,22 @@
 install:
 	cp .env.example .env
 
+.PHONY: run
+## Run application
+run:
+	cd src && python manage.py runserver
+
+.PHONY: admin
+## Create super user
+admin:
+	cd src && python manage.py createsuperuser
+
+.PHONY: migrate
+## Migrate migrations
+migrate:
+	cd src && python manage.py makemigrations
+	cd src && python manage.py migrate
+
 .PHONY: format
 ## Apply black & isort code formatting
 format:
