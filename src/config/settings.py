@@ -105,7 +105,22 @@ DEFAULT_DATE_FORMAT = "%Y-%m-%d"
 DEFAULT_TIME_FORMAT = "%H:%M"
 DEFAULT_DATETIME_FORMAT = f"{DEFAULT_DATE_FORMAT}T{DEFAULT_TIME_FORMAT}"
 REST_FRAMEWORK = {
+    "DEFAULT_PAGINATION_CLASS": "config.pagination.Pagination",
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+    "EXCEPTION_HANDLER": "config.exceptions.drf_exception_handler",
+    "DEFAULT_AUTHENTICATION_CLASSES": [
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ],
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.IsAuthenticated",
+    ],
+    "TEST_REQUEST_DEFAULT_FORMAT": "json",
+    "TIME_FORMAT": DEFAULT_TIME_FORMAT,
+    "TIME_INPUT_FORMATS": [DEFAULT_TIME_FORMAT],
+    "DATE_FORMAT": DEFAULT_DATE_FORMAT,
+    "DATE_INPUT_FORMATS": [DEFAULT_DATE_FORMAT],
+    "DATETIME_FORMAT": DEFAULT_DATETIME_FORMAT,
+    "DATETIME_INPUT_FORMATS": [DEFAULT_DATETIME_FORMAT],
 }
 
 # Swagger
