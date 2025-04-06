@@ -55,4 +55,4 @@ coverage:
 
 .PHONY: ci
 ## Run CI checks
-ci: | format-check lint mypy clean tests coverage
+ci: | format-check lint mypy

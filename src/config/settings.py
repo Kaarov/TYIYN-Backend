@@ -100,6 +100,35 @@ DATABASES = {
     }
 }
 
+# REST FRAMEWORK
+DEFAULT_DATE_FORMAT = "%Y-%m-%d"
+DEFAULT_TIME_FORMAT = "%H:%M"
+DEFAULT_DATETIME_FORMAT = f"{DEFAULT_DATE_FORMAT}T{DEFAULT_TIME_FORMAT}"
+REST_FRAMEWORK = {
+    "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
+}
+
+# Swagger
+SPECTACULAR_SETTINGS = {
+    "TITLE": "Tanda documentation",
+    "VERSION": "1.0.0",
+    "SCHEMA_PATH_PREFIX": "/api/v[0-9]",
+    "SCHEMA_PATH_PREFIX_TRIM": False,
+    "SERVE_INCLUDE_SCHEMA": False,
+    "COMPONENT_SPLIT_REQUEST": True,  # convert "string image" to "binary image"
+    "OPENAPI_VERSION": "3.0.3",
+    "SWAGGER_UI_SETTINGS": {
+        "defaultModelExpandDepth": 3,
+        "defaultModelRendering": "model",
+        "filter": True,
+        "showCommonExtensions": True,
+        "persistAuthorization": True,
+        "displayOperationId": True,
+        "deepLinking": True,
+        "docExpansion": "none",
+    },
+}
+
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
