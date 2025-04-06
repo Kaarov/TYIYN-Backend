@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "users",
 ]
 
 MIDDLEWARE = [
@@ -143,5 +144,7 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Django jet
 JET_SIDE_MENU_COMPACT = True
+
+AUTH_USER_MODEL = "users.User"
 
 CORS_ALLOW_ALL_ORIGINS = True

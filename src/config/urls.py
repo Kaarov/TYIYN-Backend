@@ -35,7 +35,12 @@ admin_urls = [
     path("admin/", admin.site.urls),
 ]
 
+app_urls = [
+    path("users/", include("users.urls")),
+]
+
 urlpatterns = [
+    *app_urls,
     path("", include(docs_urls)),
     path("", include(admin_urls)),
     *static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT),
