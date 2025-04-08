@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "users",
+    "card",
 ]
 
 MIDDLEWARE = [
@@ -106,7 +107,6 @@ DEFAULT_DATE_FORMAT = "%Y-%m-%d"
 DEFAULT_TIME_FORMAT = "%H:%M"
 DEFAULT_DATETIME_FORMAT = f"{DEFAULT_DATE_FORMAT}T{DEFAULT_TIME_FORMAT}"
 REST_FRAMEWORK = {
-    "DEFAULT_PAGINATION_CLASS": "config.pagination.Pagination",
     "DEFAULT_SCHEMA_CLASS": "drf_spectacular.openapi.AutoSchema",
     "EXCEPTION_HANDLER": "config.exceptions.drf_exception_handler",
     "DEFAULT_AUTHENTICATION_CLASSES": [

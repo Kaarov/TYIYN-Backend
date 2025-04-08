@@ -37,6 +37,7 @@ admin_urls = [
 
 app_urls = [
     path("users/", include("users.urls")),
+    path("card/", include("card.urls")),
 ]
 
 urlpatterns = [
