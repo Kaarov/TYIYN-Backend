@@ -1,7 +1,7 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
-from src.config.models import Language
+from config.models import Language
 
 
 class User(AbstractUser):

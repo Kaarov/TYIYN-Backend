@@ -8,18 +8,18 @@ install:
 .PHONY: run
 ## Run application
 run:
-	cd src && python manage.py runserver
+	cd src && poetry run python manage.py runserver
 
 .PHONY: admin
 ## Create super user
 admin:
-	cd src && python manage.py createsuperuser
+	cd src && poetry run python manage.py createsuperuser
 
 .PHONY: migrate
 ## Migrate migrations
 migrate:
-	cd src && python manage.py makemigrations
-	cd src && python manage.py migrate
+	cd src && poetry run python manage.py makemigrations
+	cd src && poetry run python manage.py migrate
 
 .PHONY: format
 ## Apply black & isort code formatting
