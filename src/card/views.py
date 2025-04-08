@@ -1,10 +1,10 @@
 from rest_framework import viewsets
+
 from .models import CardModel
-from .serializers import CardSerializer, CardListSerializer
+from .serializers import CardListSerializer, CardSerializer
 
 
 class CardModelViewSet(viewsets.ModelViewSet):
-
     def get_queryset(self):
         return CardModel.objects.filter(user=self.request.user)
 
