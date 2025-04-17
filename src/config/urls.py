@@ -39,6 +39,7 @@ app_urls = [
     path("users/", include("users.urls")),
     path("card/", include("card.urls")),
     path("category/", include("category.urls")),
+    path("budget/", include("budget.urls")),
 ]
 
 urlpatterns = [

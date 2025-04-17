@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     "users",
     "card",
     "category",
+    "budget",
 ]
 
 MIDDLEWARE = [
