@@ -121,6 +121,10 @@ REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.IsAuthenticated",
     ],
+    "DEFAULT_RENDERER_CLASSES": [
+        "rest_framework.renderers.JSONRenderer",
+        "drf_excel.renderers.XLSXRenderer",
+    ],
     "TEST_REQUEST_DEFAULT_FORMAT": "json",
     "TIME_FORMAT": DEFAULT_TIME_FORMAT,
     "TIME_INPUT_FORMATS": [DEFAULT_TIME_FORMAT],
