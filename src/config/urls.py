@@ -44,6 +44,7 @@ app_urls = [
     path("transfer/", include("transfer.urls")),
     path("income/", include("income.urls")),
     path("expense/", include("expense.urls")),
+    path("analytics/", include("analytics.urls")),
 ]
 
 urlpatterns = [
