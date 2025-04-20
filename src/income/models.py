@@ -34,7 +34,7 @@ class IncomeModel(TimestampedModel):
     class Meta:
         verbose_name = "Income"
         verbose_name_plural = "Incomes"
-        ordering = ("-date",)
+        ordering = ("-category",)
 
     def __str__(self):
         return "{} - {} - {}".format(self.category, self.card, self.user)
