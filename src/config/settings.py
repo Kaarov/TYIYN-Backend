@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     "goal",
     "transfer",
     "income",
+    "expense",
 ]
 
 MIDDLEWARE = [

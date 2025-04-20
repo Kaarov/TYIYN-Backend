@@ -43,6 +43,7 @@ app_urls = [
     path("goal/", include("goal.urls")),
     path("transfer/", include("transfer.urls")),
     path("income/", include("income.urls")),
+    path("expense/", include("expense.urls")),
 ]
 
 urlpatterns = [

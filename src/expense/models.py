@@ -6,11 +6,11 @@ from config.models import TimestampedModel
 from users.models import User
 
 
-class IncomeModel(TimestampedModel):
+class ExpenseModel(TimestampedModel):
     card = models.ForeignKey(
         CardModel,
         on_delete=models.CASCADE,
-        related_name="incomes",
+        related_name="expenses",
         verbose_name="Card",
     )
     category = models.ForeignKey(
@@ -18,7 +18,7 @@ class IncomeModel(TimestampedModel):
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
-        related_name="incomes",
+        related_name="expenses",
         verbose_name="Category",
     )
     amount = models.DecimalField("Amount", max_digits=10, decimal_places=2)
@@ -27,14 +27,14 @@ class IncomeModel(TimestampedModel):
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name="incomes",
+        related_name="expenses",
         verbose_name="User",
     )
 
     class Meta:
-        verbose_name = "Income"
-        verbose_name_plural = "Incomes"
-        ordering = ("-category",)
+        verbose_name = "Expense"
+        verbose_name_plural = "Expenses"
+        ordering = ("-created_at",)
 
     def __str__(self):
         return "{} - {} - {}".format(self.category, self.card, self.user)
