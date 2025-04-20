@@ -40,6 +40,7 @@ app_urls = [
     path("card/", include("card.urls")),
     path("category/", include("category.urls")),
     path("budget/", include("budget.urls")),
+    path("goal/", include("goal.urls")),
 ]
 
 urlpatterns = [
