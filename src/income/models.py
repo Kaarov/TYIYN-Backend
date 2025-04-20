@@ -23,7 +23,7 @@ class IncomeModel(TimestampedModel):
     )
     amount = models.DecimalField("Amount", max_digits=10, decimal_places=2)
     description = models.TextField("Description", null=True, blank=True)
-    date = models.DateField("Date", null=True, blank=True, auto_now_add=True)
+    date = models.DateField("Date", null=True, blank=True)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
