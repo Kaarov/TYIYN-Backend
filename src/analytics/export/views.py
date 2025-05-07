@@ -19,6 +19,7 @@ from income.models import IncomeModel
         OpenApiParameter(name="year", description="Year (for example, 2025 or 'all')", type=str, required=False),
         OpenApiParameter(name="card", description="Card ID (optional)", type=int, required=False),
     ],
+    responses={200: None},
 )
 class ExportOperationsAPIView(APIView):
     def get(self, request):
