@@ -136,7 +136,7 @@ REST_FRAMEWORK = {
 
 # Swagger
 SPECTACULAR_SETTINGS = {
-    "TITLE": "Tanda documentation",
+    "TITLE": "TYIYN documentation",
     "VERSION": "1.0.0",
     "SCHEMA_PATH_PREFIX": "/api/v[0-9]",
     "SCHEMA_PATH_PREFIX_TRIM": False,
