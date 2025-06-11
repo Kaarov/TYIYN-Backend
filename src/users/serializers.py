@@ -22,6 +22,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             "language",
             "password",
             "password2",
+            "fcm_token",
         )
         extra_kwargs = {"username": {"required": True}, "email": {"required": True}}
 
@@ -33,7 +34,10 @@ class RegisterSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         language = validated_data.pop("language", None)
         user = User.objects.create(
-            username=validated_data["username"], email=validated_data["email"], language=language
+            username=validated_data["username"],
+            email=validated_data["email"],
+            language=language,
+            fcm_token=validated_data["fcm_token"],
         )
         user.set_password(validated_data["password"])
         user.save()

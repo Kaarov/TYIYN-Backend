@@ -22,3 +22,4 @@ db.sqlite3
 sandbox.py
 src/junit-report.xml
 .venv
+src/staticfiles

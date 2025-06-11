@@ -1,4 +1,4 @@
-# Tyiyn Finance Mobile Application
+# TYIYN Finance Mobile Application
 
 # Local development
 

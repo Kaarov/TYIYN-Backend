@@ -45,6 +45,7 @@ app_urls = [
     path("income/", include("income.urls")),
     path("expense/", include("expense.urls")),
     path("analytics/", include("analytics.urls")),
+    path("notifications/", include("notifications.urls")),
 ]
 
 urlpatterns = [
