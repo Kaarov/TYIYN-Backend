@@ -11,57 +11,46 @@ from notifications.utils import send_push_notification
 @shared_task
 def check_budget_notifications():
     now = timezone.now()
-    print("check_budget_notifications")
-    budget = BudgetModel.objects.get(id=4)
-    send_push_notification(budget.user, "Mura Loh", "LOOOOOOOOh")
-    NotificationModel.objects.create(
-                        title="Mura Loh",
-                        description="Mura Looooooooooooh",
-                        user=budget.user,
-                    )
-    print("check_budget_notifications done")
 
-    # for budget in BudgetModel.objects.all():
-    #     print("budget")
-    #     send_push_notification(budget.user, "Цель", "LOL")
-    #     if budget.period.year == now.year and budget.period.month == now.month:
-    #         spent_percentage = (budget.spent / budget.limit) * 100 if budget.limit else 0
-    #         category_title = budget.category.get_name(budget.user.language)
-    #         message = ""
-    #         title = ""
-    #
-    #         if 29 < spent_percentage < 31:
-    #             title = "Percentage spent for budget"
-    #             message = f"Вы потратили {int(spent_percentage)}% от своего месячного бюджета на '{category_title}'. Попробуйте готовить дома, чтобы сэкономить."
-    #             send_push_notification(budget.user, "Бюджет", message)
-    #         elif 49 < spent_percentage < 51:
-    #             title = "Percentage spent for budget"
-    #             message = f"Половина месячного бюджета на '{category_title}' израсходована ({int(spent_percentage)}%). Будьте внимательны!"
-    #             send_push_notification(budget.user, "Бюджет", message)
-    #         elif 74 < spent_percentage < 76:
-    #             title = "Percentage spent for budget"
-    #             message = f"Вы потратили 75% бюджета на '{category_title}'. Осталось немного!"
-    #             send_push_notification(budget.user, "Бюджет", message)
-    #         elif 89 < spent_percentage < 91:
-    #             title = "Percentage spent for budget"
-    #             message = f"Почти весь бюджет на '{category_title}' израсходован ({int(spent_percentage)}%)."
-    #             send_push_notification(budget.user, "Бюджет", message)
-    #
-    #         # Дополнительные проверки с учетом времени и оставшейся суммы
-    #         days_left = (budget.period.replace(day=1, month=budget.period.month + 1) - now.date()).days
-    #         remaining_amount = budget.limit - budget.spent
-    #
-    #         if days_left <= 7 and remaining_amount <= 1000 and spent_percentage > 70:
-    #             title = "Remaining spent for budget"
-    #             message = f"Внимание! До конца месяца осталась неделя, а по бюджету '{budget.category}' осталось всего {remaining_amount}C."
-    #             send_push_notification(budget.user, "Бюджет", message)
-    #
-    #         if message != "" and title != "":
-    #             NotificationModel.objects.create(
-    #                 title=title,
-    #                 description=message,
-    #                 user=budget.user,
-    #             )
+    for budget in BudgetModel.objects.all():
+        if budget.period.year == now.year and budget.period.month == now.month:
+            spent_percentage = (budget.spent / budget.limit) * 100 if budget.limit else 0
+            category_title = budget.category.get_name(budget.user.language)
+            message = ""
+            title = ""
+
+            if 29 < spent_percentage < 31:
+                title = "Percentage spent for budget"
+                message = f"Вы потратили {int(spent_percentage)}% от своего месячного бюджета на '{category_title}'. Попробуйте готовить дома, чтобы сэкономить."
+                send_push_notification(budget.user, "Бюджет", message)
+            elif 49 < spent_percentage < 51:
+                title = "Percentage spent for budget"
+                message = f"Половина месячного бюджета на '{category_title}' израсходована ({int(spent_percentage)}%). Будьте внимательны!"
+                send_push_notification(budget.user, "Бюджет", message)
+            elif 74 < spent_percentage < 76:
+                title = "Percentage spent for budget"
+                message = f"Вы потратили 75% бюджета на '{category_title}'. Осталось немного!"
+                send_push_notification(budget.user, "Бюджет", message)
+            elif 89 < spent_percentage < 91:
+                title = "Percentage spent for budget"
+                message = f"Почти весь бюджет на '{category_title}' израсходован ({int(spent_percentage)}%)."
+                send_push_notification(budget.user, "Бюджет", message)
+
+            # Дополнительные проверки с учетом времени и оставшейся суммы
+            days_left = (budget.period.replace(day=1, month=budget.period.month + 1) - now.date()).days
+            remaining_amount = budget.limit - budget.spent
+
+            if days_left <= 7 and remaining_amount <= 1000 and spent_percentage > 70:
+                title = "Remaining spent for budget"
+                message = f"Внимание! До конца месяца осталась неделя, а по бюджету '{budget.category}' осталось всего {remaining_amount}C."
+                send_push_notification(budget.user, "Бюджет", message)
+
+            if message != "" and title != "":
+                NotificationModel.objects.create(
+                    title=title,
+                    description=message,
+                    user=budget.user,
+                )
 
 
 @shared_task

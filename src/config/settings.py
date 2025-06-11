@@ -250,6 +250,6 @@ FIREBASE_CREDENTIALS_PATH = env("FIREBASE_CREDENTIALS_PATH")
 CELERY_BEAT_SCHEDULE = {
     "periodic_notifications": {
         "task": "notifications.tasks.periodic_notifications",
-        "schedule": 120.0,
+        "schedule": 300.0,
     },
 }
