@@ -52,6 +52,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    # celery
+    "django_celery_results",
+    "django_celery_beat",
+    # apps
     "users",
     "card",
     "category",
@@ -60,6 +64,7 @@ INSTALLED_APPS = [
     "transfer",
     "income",
     "expense",
+    "notifications",
 ]
 
 MIDDLEWARE = [
@@ -156,8 +161,8 @@ SPECTACULAR_SETTINGS = {
 }
 
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
-    "REFRESH_TOKEN_LIFETIME": timedelta(weeks=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(weeks=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(weeks=4),
     "ROTATE_REFRESH_TOKENS": False,
     "BLACKLIST_AFTER_ROTATION": False,
     "UPDATE_LAST_LOGIN": False,
@@ -178,8 +183,8 @@ SIMPLE_JWT = {
     "TOKEN_USER_CLASS": "rest_framework_simplejwt.models.TokenUser",
     "JTI_CLAIM": "jti",
     "SLIDING_TOKEN_REFRESH_EXP_CLAIM": "refresh_exp",
-    "SLIDING_TOKEN_LIFETIME": timedelta(days=1),
-    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(weeks=1),
+    "SLIDING_TOKEN_LIFETIME": timedelta(weeks=1),
+    "SLIDING_TOKEN_REFRESH_LIFETIME": timedelta(weeks=4),
 }
 
 # Password validation
@@ -231,4 +236,20 @@ AUTH_USER_MODEL = "users.User"
 
 CORS_ALLOW_ALL_ORIGINS = True
 
-ADMIN_PASSWORD = SECRET_KEY = env("ADMIN_PASSWORD")
+ADMIN_PASSWORD = env("ADMIN_PASSWORD")
+
+# Celery Configuration
+CELERY_BROKER_URL = env("CELERY_BROKER_URL")
+CELERY_RESULT_BACKEND = env("CELERY_RESULT_BACKEND")
+CELERY_ACCEPT_CONTENT = ["json"]
+CELERY_TASK_SERIALIZER = "json"
+CELERY_TIMEZONE = "UTC"
+
+FIREBASE_CREDENTIALS_PATH = env("FIREBASE_CREDENTIALS_PATH")
+
+CELERY_BEAT_SCHEDULE = {
+    "periodic_notifications": {
+        "task": "notifications.tasks.periodic_notifications",
+        "schedule": 300.0,
+    },
+}

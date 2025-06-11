@@ -9,7 +9,7 @@ class CardModelViewSet(viewsets.ModelViewSet):
         return CardModel.objects.filter(user=self.request.user)
 
     def get_serializer_class(self):
-        if self.action == "list":
+        if self.action in ["list", "create"]:
             return CardListSerializer
         return CardSerializer
 

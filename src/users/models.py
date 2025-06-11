@@ -12,6 +12,7 @@ class User(AbstractUser):
     avatar = models.ImageField("Profile picture", upload_to="profile-picture/", blank=True, null=True)
     bio = models.TextField("Bio", blank=True, null=True)
     language = models.CharField("Language", max_length=10, choices=Language.choices, default=Language.ENGLISH)
+    fcm_token = models.CharField(max_length=255, null=True, blank=True)
 
     USERNAME_FIELD = "username"
 
